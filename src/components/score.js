@@ -2,12 +2,14 @@ import React from 'react'
 
 import './score.css';
 
-const Score = () => {
+
+const Score = ({ score, highScore }) => {
+    
   return (
     <>
       <section className="scores">
-            <p id="score"></p>
-            <p id="highScore"></p>
+            <p id="score">Score: {score}</p>
+            <p id="highScore">High score: {highScore}</p>
       </section>
     </>
   )
