@@ -17,6 +17,10 @@ import Orange from '../images/orange.jpg'
 // CSS
 import './game.css';
 
+import { addHighScore } from "./firestore/add-highscore";
+import { addUserScore } from "./firestore/add-user-score";
+
+
 const ActiveGame = ({ props }) => {
 
     const [ id, setId ] = useState(0)
@@ -92,8 +96,10 @@ const ActiveGame = ({ props }) => {
             console.log('game over')
             props.setIsGameOver(true)
             props.setIsActiveGame(false)
-
+            addUserScore(props.user, props.score)
+            
             if(props.score > props.highScore) {
+                addHighScore(props.user, props.score)
                 props.setHighScore(props.score)
             }
         }
