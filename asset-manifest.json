@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/react-fruit-picker/static/css/main.232feed9.chunk.css",
+    "main.js": "/react-fruit-picker/static/js/main.8ca8709e.chunk.js",
+    "main.js.map": "/react-fruit-picker/static/js/main.8ca8709e.chunk.js.map",
+    "runtime-main.js": "/react-fruit-picker/static/js/runtime-main.1bfa4df1.js",
+    "runtime-main.js.map": "/react-fruit-picker/static/js/runtime-main.1bfa4df1.js.map",
+    "static/js/2.3b1d7915.chunk.js": "/react-fruit-picker/static/js/2.3b1d7915.chunk.js",
+    "static/js/2.3b1d7915.chunk.js.map": "/react-fruit-picker/static/js/2.3b1d7915.chunk.js.map",
+    "static/js/3.487acb45.chunk.js": "/react-fruit-picker/static/js/3.487acb45.chunk.js",
+    "static/js/3.487acb45.chunk.js.map": "/react-fruit-picker/static/js/3.487acb45.chunk.js.map",
+    "index.html": "/react-fruit-picker/index.html",
+    "static/css/main.232feed9.chunk.css.map": "/react-fruit-picker/static/css/main.232feed9.chunk.css.map",
+    "static/js/2.3b1d7915.chunk.js.LICENSE.txt": "/react-fruit-picker/static/js/2.3b1d7915.chunk.js.LICENSE.txt",
+    "static/media/grass_background.237618e0.png": "/react-fruit-picker/static/media/grass_background.237618e0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1bfa4df1.js",
+    "static/js/2.3b1d7915.chunk.js",
+    "static/css/main.232feed9.chunk.css",
+    "static/js/main.8ca8709e.chunk.js"
+  ]
+}
