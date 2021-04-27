@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import { scores } from './scores'
+// import { scores } from './scores'
 
 import firebase from "firebase/app";
 import 'firebase/firestore';
