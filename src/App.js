@@ -28,15 +28,50 @@ function App() {
   // const om = openmoji.openmojis
   const [ loggedIn, setLoggedIn ] = useState(false)
   const [ userName, setUserName ] = useState('')    
-  const [ userEmail, setUserEmail ] = useState('')    
+  const [ userEmail, setUserEmail ] = useState('')   
+  const [ userScores, setUserScores ] = useState([])
+  const [ personalHighScore, setPersonalHighScore ] = useState(0) 
+
+  const userProps = {
+    userName: userName,
+    userEmail: userEmail,
+    userScores: userScores,
+    setUserScores: setUserScores,
+    personalHighScore: personalHighScore,
+    setPersonalHighScore: setPersonalHighScore
+  }
 
   
   useEffect(() => {
-    if(loggedIn) {
-      addUser(userName, userEmail)
+    let db = firebase.firestore();
+    
+    if (loggedIn) {
+
+      var docRef = db.collection("users").doc(userEmail);
+  
+      docRef.get().then((doc) => {
+      if (doc.exists) {
+        let user = doc.data()
+          console.log("Welcome back", user.name);
+          setPersonalHighScore(user.personalHighScore)
+          setUserScores(user.scores)
+
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("New user!");
+          db.collection("users").doc(userEmail).set({
+              name: userName,
+              email: userEmail,
+              scores: [],
+              personalHighScore: 0
+          })
+      }
+      }).catch((error) => {
+          console.log("Error getting document:", error);
+      });
     }
   }, [loggedIn])
-  
+
 
   return (
     <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
@@ -54,7 +89,6 @@ function App() {
             })
             } */}
           <Header loggedIn={loggedIn} />
-          {/* <LogIn /> */}
           <FirebaseAuthConsumer>
             {({ isSignedIn, user, providerId }) => {
               if (isSignedIn) {
@@ -79,7 +113,7 @@ function App() {
           </FirebaseAuthConsumer>
           <IfFirebaseAuthed>
               {() => {
-                return         <Game user={userEmail} />
+                return         <Game user={userEmail} userProps={userProps} />
               }}
           </IfFirebaseAuthed>
           

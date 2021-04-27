@@ -19,6 +19,7 @@ import './game.css';
 
 import { addHighScore } from "./firestore/add-highscore";
 import { addUserScore } from "./firestore/add-user-score";
+import { setNewPersonalHighscore } from "./firestore/set-new-personal-highscore";
 
 
 const ActiveGame = ({ props }) => {
@@ -97,6 +98,12 @@ const ActiveGame = ({ props }) => {
             props.setIsGameOver(true)
             props.setIsActiveGame(false)
             addUserScore(props.user, props.score)
+            props.userProps.setUserScores([...props.userProps.userScores, props.score])
+            if(props.score > props.userProps.personalHighScore) {
+                props.userProps.setPersonalHighScore(props.score)
+                setNewPersonalHighscore(props.user, props.score)
+                console.log('new personal record')
+            }
             
             if(props.score > props.highScore) {
                 addHighScore(props.user, props.score)

@@ -2,9 +2,8 @@ import firebase from "firebase/app";
 import 'firebase/firestore';
 
 
-export const addUser = (user, email) => {
+export const getUserInfo = (user) => {
     
-
     let db = firebase.firestore();
 
     var docRef = db.collection("users").doc(email);
@@ -12,7 +11,6 @@ export const addUser = (user, email) => {
     docRef.get().then((doc) => {
     if (doc.exists) {
         console.log("Welcome back", doc.data().name);
-        return doc
     } else {
         // doc.data() will be undefined in this case
         console.log("New user!");

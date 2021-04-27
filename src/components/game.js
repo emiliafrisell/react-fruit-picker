@@ -7,7 +7,7 @@ import ActiveGame from './active-game'
 import GameOver from './game-over'
 import Score from './score'
 
-const Game = ({user}) => {
+const Game = ({user, userProps}) => {
 
     const [isActiveGame, setIsActiveGame] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
@@ -45,7 +45,8 @@ const Game = ({user}) => {
         setPlayerOrientation: setPlayerOrientation,
         setIsGameOver: setIsGameOver,
         setIsActiveGame: setIsActiveGame,
-        user: user
+        user: user,
+        userProps: userProps
     }
 
     const handleStartGame = () => {
@@ -78,7 +79,7 @@ const Game = ({user}) => {
 
         </section>
 
-        <Score score={score} highScore={highScore} />
+        <Score score={score} highScore={highScore} userProps={userProps} />
       </main>
     </>
   )
