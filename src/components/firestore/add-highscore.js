@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import 'firebase/firestore';
 
 
-export const addHighScore = (user, score) => {
+export const addHighScore = (userName, user, score) => {
     // firebase.initializeApp({
     //             apiKey: "AIzaSyBtGh5Qy55R-OBHz8ISsBoFd8OWJvKJnsA",
     //             authDomain: "react-fruit-picker.firebaseapp.com",
@@ -12,7 +12,8 @@ export const addHighScore = (user, score) => {
         let db = firebase.firestore();
 
     db.collection("HighScores").add({
-        name: user,
+        email: user,
+        name: userName,
         score: score
     })
     .then((docRef) => {

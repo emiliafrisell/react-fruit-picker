@@ -104,9 +104,9 @@ const ActiveGame = ({ props }) => {
                 setNewPersonalHighscore(props.user, props.score)
                 console.log('new personal record')
             }
+            addHighScore(props.userProps.userName, props.user, props.score)
             
             if(props.score > props.highScore) {
-                addHighScore(props.user, props.score)
                 props.setHighScore(props.score)
             }
         }
