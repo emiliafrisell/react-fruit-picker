@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
+import { scores } from './scores'
+
 import firebase from "firebase/app";
 import 'firebase/firestore';
 
@@ -10,7 +12,9 @@ import { FirestoreCollection } from "@react-firebase/firestore";
 import './score.css';
 
 
-const Score = ({ score, highScore, userProps }) => {
+const Score = ({ score, isGameOver, userProps }) => {
+
+    // console.log(scores)
 
     const [ first, setFirst ] = useState('')
     const [ second, setSecond ] = useState('')
@@ -40,34 +44,52 @@ const Score = ({ score, highScore, userProps }) => {
         });
     }, [])
 
+    useEffect(() => {
+        if(score > first.score) {
+            setThird({name: second.name, score: second.score})
+            setSecond({name: first.name, score: first.score})
+            setFirst({name: userProps.userName, score: score})
+            console.log('first')
+        } else if (score > second.score && score <= first.score) {
+            setThird({name: second.name, score: second.score})
+            setSecond({name: userProps.userName, score: score})
+            console.log('second')
+
+        } else if (score > third.score && score <= second.score) {
+            setThird({name: userProps.userName, score: score})
+            console.log('third')
+
+        }
+
+    }, [isGameOver])
+
   return (
     <>
-      <section className="scores">
-            <p id="score">Score: {score}</p>
-            <div style={{textAlign: 'right'}}>
-                <p id="highScore">Personal High score: {userProps.personalHighScore}</p>
-                <p id="highScore">Game High score: {first.score}</p>
-            </div>
-      </section>
-            <div className="scores">
-                <div> Personal top 3
-                    <ol>
-                        {
-                        userProps.userScores.sort((a, b) => (a < b) ? 1 : -1).slice(0, 3).map(score => {
-                            return <li>{score}</li>
-                        })
-                        }
-                    </ol>
+        <section className="scores">
+                <p id="score">Score: {score}</p>
+                <div style={{textAlign: 'right'}}>
+                    <p id="highScore">Personal High score: {userProps.personalHighScore}</p>
+                    <p id="highScore">Game High score: {first.score}</p>
                 </div>
-                <div> Game top 3
-                    <ol style={{textAlign: 'left'}}>
-                         <li style={{}}>{first.name}: <span style={{float: 'right'}}>{first.score}</span></li>
-                         <li>{second.name}: <span style={{float: 'right'}}>{second.score}</span></li>
-                         <li>{third.name}: <span style={{float: 'right'}}>{third.score}</span></li>
-                        
-                    </ol>
-                </div>
+        </section>
+        <section className="scores">
+            <div> Personal top 3
+                <ol>
+                    {
+                    userProps.userScores.sort((a, b) => (a < b) ? 1 : -1).slice(0, 3).map(score => {
+                        return <li>{score}</li>
+                    })
+                    }
+                </ol>
             </div>
+            <div> Game top 3
+                <ol style={{textAlign: 'left'}}>
+                    <li style={{}}>{first.name}:  <span style={{float: 'right'}}> {first.score}</span></li>
+                    <li>{second.name}:  <span style={{float: 'right'}}> {second.score}</span></li>
+                    <li>{third.name}:  <span style={{float: 'right'}}> {third.score}</span></li>
+                </ol>
+            </div>
+        </section>
     </>
   )
 }

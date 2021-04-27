@@ -43,6 +43,7 @@ const Game = ({user, userProps}) => {
         setHighScore: setHighScore,
         playerStyle: playerStyle,
         setPlayerOrientation: setPlayerOrientation,
+        // isGameOver: isGameOver, 
         setIsGameOver: setIsGameOver,
         setIsActiveGame: setIsActiveGame,
         user: user,
@@ -79,7 +80,7 @@ const Game = ({user, userProps}) => {
 
         </section>
 
-        <Score score={score} highScore={highScore} userProps={userProps} />
+        <Score score={score} highScore={highScore} userProps={userProps} isGameOver={isGameOver} />
       </main>
     </>
   )
