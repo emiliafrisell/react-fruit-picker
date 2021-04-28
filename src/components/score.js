@@ -1,20 +1,12 @@
 import React, {useState, useEffect} from 'react'
 
-// import { scores } from './scores'
-
 import firebase from "firebase/app";
 import 'firebase/firestore';
-
-import { FirestoreProvider } from "@react-firebase/firestore";
-import { firebaseConfig } from "../config";
-import { FirestoreCollection } from "@react-firebase/firestore";
 
 import './score.css';
 
 
 const Score = ({ score, isGameOver, userProps }) => {
-
-    // console.log(scores)
 
     const [ first, setFirst ] = useState('')
     const [ second, setSecond ] = useState('')
