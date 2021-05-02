@@ -7,7 +7,7 @@ import ActiveGame from './active-game'
 import GameOver from './game-over'
 import Score from './score'
 
-const Game = ({user, userProps}) => {
+const Game = ({user, userProps, fruits}) => {
 
     const [isActiveGame, setIsActiveGame] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
@@ -47,7 +47,8 @@ const Game = ({user, userProps}) => {
         setIsGameOver: setIsGameOver,
         setIsActiveGame: setIsActiveGame,
         user: user,
-        userProps: userProps
+        userProps: userProps,
+        fruits: fruits
     }
 
     const handleStartGame = () => {
@@ -63,6 +64,7 @@ const Game = ({user, userProps}) => {
         setPlayerY(2)
     }
 
+    
   return (
     <>
       <main>

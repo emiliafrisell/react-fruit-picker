@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PoopImg from '../../images/poop.jpg'
+import PoopImg from '../color/svg/1F4A9.svg'
 
 const Poop = ( props ) => {
 

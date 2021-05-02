@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-const Fruit = ( props ) => {
+const Fruit = (props) => {
 
-    const fruitPosition = {
-        gridColumnStart: props.x,
-        gridRowStart: props.y,
-    }
+  const [fruit, setFruit] = useState('')
+
+  const openmoji = require('openmoji')
+  const oms = openmoji.openmojis
+
+  let omFruit = oms.filter(om => om.subgroups === 'food-fruit')
+
+  useEffect(() => {
+    import(`../color/svg/${omFruit[props.type].hexcode}.svg`)
+      .then((module) => {
+        setFruit(module.default)
+      })
+
+  //     console.log(props)
+  }, [])
+
+  const fruitPosition = {
+    gridColumnStart: props.x,
+    gridRowStart: props.y,
+  }
 
   return (
     <>
-      <img src={props.type} id={props.id} alt="fruit" style={fruitPosition}/>
+      <img src={fruit} id={props.id} alt="fruit" style={fruitPosition} />
     </>
   )
 }

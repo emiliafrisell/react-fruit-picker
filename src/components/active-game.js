@@ -8,18 +8,20 @@ import Poop from './emojis/poop'
 import useKeyPress from './useKeyPress'
 
 // FRUITS
-import Apple from '../images/apple.jpg'
-import Grapes from '../images/grapes.jpg'
-import Pear from '../images/pear.jpg'
-import Pineapple from '../images/pineapple.jpg'
-import Orange from '../images/orange.jpg'
+// import Apple from '../images/apple.jpg'
+// import Grapes from '../images/grapes.jpg'
+// import Pear from '../images/pear.jpg'
+// import Pineapple from '../images/pineapple.jpg'
+// import Orange from '../images/orange.jpg'
 
 // CSS
 import './game.css';
 
+// FIRESTORE
 import { addHighScore } from "./firestore/add-highscore";
 import { addUserScore } from "./firestore/add-user-score";
 import { setNewPersonalHighscore } from "./firestore/set-new-personal-highscore";
+// import GetFruits from "./getFruits";
 
 
 const ActiveGame = ({ props }) => {
@@ -30,8 +32,11 @@ const ActiveGame = ({ props }) => {
     const right = useKeyPress("ArrowRight");
     const down = useKeyPress("ArrowDown");
     const left = useKeyPress("ArrowLeft");
-    
-    const fruitArray = [Apple, Pineapple, Grapes, Orange, Pear];
+
+    // const openmoji = require('openmoji')
+    // const om = openmoji.openmojis[0]
+
+    // const fruitArray = [Apple, Pineapple, Grapes, Orange, Pear];
 
     const placeFruit = (fruit) => {
         let randomX = Math.floor(Math.random() * 20) + 1
@@ -46,10 +51,9 @@ const ActiveGame = ({ props }) => {
             console.log(sameAsFruit, sameAsPlayer, sameAsPoop)
             placeFruit(fruit)
         } else {
-            // console.log('not same position')
             fruit.x = randomX
             fruit.y = randomY 
-            fruit.type = fruitArray[Math.floor(Math.random() * 5)]
+            fruit.type = Math.floor(Math.random() * 18)
         }
 
     }
@@ -87,9 +91,10 @@ const ActiveGame = ({ props }) => {
             Fruits.map(fruit => {
                 if (fruit.x === x && fruit.y === y) {
                     props.setScore(props.score + 1)
-                    placeFruit(fruit)
                     placePoop()
+                    placeFruit(fruit)
                 }
+                return
             })
         }
 
@@ -119,13 +124,13 @@ const ActiveGame = ({ props }) => {
         movePlayer()
         
         checkLocationOfPlayer(props.playerX, props.playerY)
-       
+        
     }, [up, right, down, left])
-
+    
   return (
     <>
       <Player props={props} />
-
+      
       { 
         Fruits.map(fruit => {
             if (fruit.x.length === 0) {

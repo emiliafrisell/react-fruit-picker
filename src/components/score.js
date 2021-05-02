@@ -41,15 +41,13 @@ const Score = ({ score, isGameOver, userProps }) => {
             setThird({name: second.name, score: second.score})
             setSecond({name: first.name, score: first.score})
             setFirst({name: userProps.userName, score: score})
-            console.log('first')
+
         } else if (score > second.score && score <= first.score) {
             setThird({name: second.name, score: second.score})
             setSecond({name: userProps.userName, score: score})
-            console.log('second')
 
         } else if (score > third.score && score <= second.score) {
             setThird({name: userProps.userName, score: score})
-            console.log('third')
 
         }
 
@@ -76,9 +74,9 @@ const Score = ({ score, isGameOver, userProps }) => {
             </div>
             <div> Game top 3
                 <ol style={{textAlign: 'left'}}>
-                    <li style={{}}>{first.name}:  <span style={{float: 'right'}}> {first.score}</span></li>
-                    <li>{second.name}:  <span style={{float: 'right'}}> {second.score}</span></li>
-                    <li>{third.name}:  <span style={{float: 'right'}}> {third.score}</span></li>
+                    <li key='1'>{first.name}:  <span style={{float: 'right'}}> {first.score}</span></li>
+                    <li key='2'>{second.name}:  <span style={{float: 'right'}}> {second.score}</span></li>
+                    <li key='3'>{third.name}:  <span style={{float: 'right'}}> {third.score}</span></li>
                 </ol>
             </div>
         </section>
