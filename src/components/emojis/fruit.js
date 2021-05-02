@@ -9,14 +9,14 @@ const Fruit = (props) => {
 
   let omFruit = oms.filter(om => om.subgroups === 'food-fruit')
 
-  useEffect(() => {
+  // useEffect(() => {
     import(`../color/svg/${omFruit[props.type].hexcode}.svg`)
       .then((module) => {
         setFruit(module.default)
       })
 
   //     console.log(props)
-  }, [props.type])
+  // }, [props.type])
 
   const fruitPosition = {
     gridColumnStart: props.x,
