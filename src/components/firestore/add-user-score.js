@@ -12,7 +12,7 @@ return userRef.update({
     scores: firebase.firestore.FieldValue.arrayUnion(score)
 })
 .then(() => {
-    console.log("Document successfully updated!");
+    // console.log("Document successfully updated!");
 })
 .catch((error) => {
     // The document probably doesn't exist.

@@ -12,7 +12,7 @@ return userRef.update({
     personalHighScore: score
 })
 .then(() => {
-    console.log("Document successfully updated!");
+    // console.log("Document successfully updated!");
 })
 .catch((error) => {
     // The document probably doesn't exist.

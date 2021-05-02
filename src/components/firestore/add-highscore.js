@@ -12,7 +12,7 @@ export const addHighScore = (userName, user, score) => {
         score: score
     })
     .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        // console.log("Document written with ID: ", docRef.id);
     })
     .catch((error) => {
         console.error("Error adding document: ", error);

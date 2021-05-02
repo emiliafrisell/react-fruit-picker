@@ -16,7 +16,7 @@ const Fruit = (props) => {
       })
 
   //     console.log(props)
-  }, [])
+  }, [props.type])
 
   const fruitPosition = {
     gridColumnStart: props.x,
