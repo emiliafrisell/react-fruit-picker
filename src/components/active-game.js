@@ -102,16 +102,20 @@ const ActiveGame = ({ props }) => {
             console.log('game over')
             props.setIsGameOver(true)
             props.setIsActiveGame(false)
-            addUserScore(props.user, props.score)
-            props.userProps.setUserScores([...props.userProps.userScores, props.score])
-            if(props.score > props.userProps.personalHighScore) {
-                props.userProps.setPersonalHighScore(props.score)
-                setNewPersonalHighscore(props.user, props.score)
-                console.log('new personal record')
+
+            if (props.userProps.isSignedIn) {
+                addUserScore(props.user, props.score)
+                props.userProps.setUserScores([...props.userProps.userScores, props.score])
+                if(props.score > props.userProps.personalHighScore) {
+                    props.userProps.setPersonalHighScore(props.score)
+                    setNewPersonalHighscore(props.user, props.score)
+                    console.log('new personal record')
+                }
+                addHighScore(props.userProps.userName, props.user, props.score)
+                
             }
-            addHighScore(props.userProps.userName, props.user, props.score)
-            
-            if(props.score > props.highScore) {
+
+            if (props.score > props.highScore) {
                 props.setHighScore(props.score)
             }
         }

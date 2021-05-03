@@ -37,41 +37,47 @@ const Score = ({ score, isGameOver, userProps }) => {
     }, [])
 
     useEffect(() => {
-        if(score > first.score) {
-            setThird({name: second.name, score: second.score})
-            setSecond({name: first.name, score: first.score})
-            setFirst({name: userProps.userName, score: score})
+        if (userProps.isSignedIn) {
+            if(score > first.score) {
+                setThird({name: second.name, score: second.score})
+                setSecond({name: first.name, score: first.score})
+                setFirst({name: userProps.userName, score: score})
 
-        } else if (score > second.score && score <= first.score) {
-            setThird({name: second.name, score: second.score})
-            setSecond({name: userProps.userName, score: score})
+            } else if (score > second.score && score <= first.score) {
+                setThird({name: second.name, score: second.score})
+                setSecond({name: userProps.userName, score: score})
 
-        } else if (score > third.score && score <= second.score) {
-            setThird({name: userProps.userName, score: score})
-
+            } else if (score > third.score && score <= second.score) {
+                setThird({name: userProps.userName, score: score})
+            }
         }
-
     }, [isGameOver])
 
   return (
-    <>
+    <apart>
         <section className="scores">
                 <p id="score">Score: {score}</p>
                 <div style={{textAlign: 'right'}}>
-                    <p id="highScore">Personal High score: {userProps.personalHighScore}</p>
+                    {
+                        userProps.isSignedIn && 
+                        <p id="highScore">Personal High score: {userProps.personalHighScore}</p>
+                    }
                     <p id="highScore">Game High score: {first.score}</p>
                 </div>
         </section>
         <section className="scores">
-            <div> Personal top 3
-                <ol>
-                    {
-                    userProps.userScores.sort((a, b) => (a < b) ? 1 : -1).slice(0, 3).map(score => {
-                        return <li>{score}</li>
-                    })
-                    }
-                </ol>
-            </div>
+            { 
+                userProps.isSignedIn && 
+                <div> Personal top 3
+                    <ol>
+                        {
+                        userProps.userScores.sort((a, b) => (a < b) ? 1 : -1).slice(0, 3).map(score => {
+                            return <li>{score}</li>
+                        })
+                        }
+                    </ol>
+                </div>
+            }
             <div> Game top 3
                 <ol style={{textAlign: 'left'}}>
                     <li key='1'>{first.name}:  <span style={{float: 'right'}}> {first.score}</span></li>
@@ -80,7 +86,7 @@ const Score = ({ score, isGameOver, userProps }) => {
                 </ol>
             </div>
         </section>
-    </>
+    </apart>
   )
 }
 

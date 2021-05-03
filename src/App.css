@@ -1,7 +1,43 @@
-.App {
-  text-align: center;
+:root {
+  --corn: #f9eb58ff;
+  --maximum-yellow-red: #e8b643ff;
+  --davys-grey: #484848ff;
+  --android-green: #b6ca50ff;
+  --middle-green-yellow: #a9bc4bff;
+  --shimmering-blush: #d88094ff;
+  --nadeshiko-pink: #f2abc0ff;
 }
 
+.App {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--davys-grey);
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.greeting {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: space-around; */
+}
+
+.greeting img {
+  height: 70px;
+  width: 70px;
+}
+.greeting h2 {
+  display: inline;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

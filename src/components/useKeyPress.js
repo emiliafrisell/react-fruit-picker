@@ -6,7 +6,8 @@ function useKeyPress(targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
   // If pressed key is our target key then set to true
   function downHandler(key) {
-    if (key.code === targetKey) {
+    console.log(key)
+    if (key.key === targetKey ) {
       key.preventDefault()
       setKeyPressed(true);
     }
@@ -26,7 +27,7 @@ function useKeyPress(targetKey) {
       window.removeEventListener("keydown", downHandler);
       window.removeEventListener("keyup", upHandler);
     };
-  }, [targetKey]); // Empty array ensures that effect is only run on mount and unmount
+  }, []); // Empty array ensures that effect is only run on mount and unmount
   return keyPressed;
 }
 

@@ -1,20 +1,21 @@
 :root {
-  --playerX: 0;
-  --playerY: 0;
-  --priceX: 10;
-  --priceY: 10;
-  --poopX: 0;
-  --poopY: 0;
+  --corn: #f9eb58ff;
+  --maximum-yellow-red: #e8b643ff;
+  --davys-grey: #484848ff;
+  --android-green: #b6ca50ff;
+  --middle-green-yellow: #a9bc4bff;
+  --shimmering-blush: #d88094ff;
+  --nadeshiko-pink: #f2abc0ff;
 }
 
 .playArea {
   display: grid;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
 
-  border: 2px dashed green;
+  border: 2px dashed var(--davys-grey);
   border-radius: 5px;
 
   margin: auto;
@@ -27,28 +28,35 @@
   grid-column-start: 6;
   grid-column-end: 16;
 }
+
 #start_game {
   grid-row-start: 10;
   grid-column-start: 10;
 
-  padding: 0.5rem 1.3rem;
+  padding: 0.5rem 2rem;
   margin-top: 0.4rem;
-  border-radius: 5px;
+  border-radius: 10px;
+  border: none;
 
-  font-size: 2rem;
-  font-family: "VT323", monospace;
+  font-size: 1.4rem;
+
+  background-color: var(--android-green);
+  box-shadow: 2px 2px 2px 2px var(--middle-green-yellow);
 }
 
 #try_again {
-  grid-row-start: 18;
+  grid-row-start: 16;
   grid-column-start: 4;
   grid-column-end: 17;
 
   padding: 1rem;
   border-radius: 5px;
+  border: none;
 
   font-size: 1.5rem;
-  font-family: "VT323", monospace;
+
+  background-color: var(--corn);
+  box-shadow: 2px 2px 2px 2px var(--maximum-yellow-red);
 }
 
 iframe {
@@ -56,41 +64,23 @@ iframe {
 }
 
 #game_over {
-  grid-row-start: 2;
+  grid-row-start: 4;
   grid-row-end: 3;
-  grid-column-start: 7;
+  grid-column-start: 5;
   grid-column-end: 17;
 }
 
 #poopGIF {
-  grid-row-start: 3;
+  grid-row-start: 6;
   grid-row-end: 18;
-  grid-column-start: 4;
-  grid-column-end: 13;
+  grid-column-start: 5;
+  grid-column-end: 18;
 }
-.hide {
+/* .hide {
   display: none;
-}
+} */
 
 img {
-  height: 19px;
-  width: 19px;
-}
-.run {
-  /* grid-row-start: var(--playerX);
-  grid-column-start: var(--playerY); */
-}
-
-.apple,
-.pineapple,
-.orange,
-.grapes,
-.pear {
-  grid-row-start: var(--priceX);
-  grid-column-start: var(--priceY);
-}
-
-.poop {
-  grid-row-start: var(--poopX);
-  grid-column-start: var(--poopY);
+  height: 24px;
+  width: 24px;
 }

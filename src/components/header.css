@@ -7,17 +7,29 @@ header {
 }
 
 .App-header {
-  background-color: #4f5b6b;
-  min-height: 20vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--davys-grey);
 }
 
 h1 {
-  padding-left: 2rem;
-  font-size: 4rem;
+  /* padding-left: 2rem; */
+  margin: 0;
+  font-size: 3rem;
+}
+
+.sign-in-button {
+  height: 50px;
+  width: 150px;
+  border-radius: 50px;
+  background-color: var(--nadeshiko-pink);
+  box-shadow: 2px 2px 2px 2px var(--shimmering-blush);
+  border: none;
+  font-size: 1.4rem;
+  color: var(--davys-grey);
+  margin: 20px;
+  margin-right: 5%;
+  /* align-self: end; */
 }

@@ -5,6 +5,8 @@ import './App.css';
 import Header from './components/header'
 import Game from './components/game'
 
+import Greeting from './components/color/svg/1F64B.svg'
+
 import firebase from "firebase/app";
 import "firebase/auth";
 import 'firebase/firestore';
@@ -24,6 +26,8 @@ function App() {
   const [ userEmail, setUserEmail ] = useState('')   
   const [ userScores, setUserScores ] = useState([])
   const [ personalHighScore, setPersonalHighScore ] = useState(0) 
+  const [ newUser, setNewUser ] = useState(false)
+  const [ continueWOSignIn, setContinueWOSignIn ] = useState(false)
   
   const openmoji = require('openmoji')
   const om = openmoji.openmojis[0]
@@ -39,7 +43,8 @@ function App() {
     setUserScores: setUserScores,
     personalHighScore: personalHighScore,
     setPersonalHighScore: setPersonalHighScore,
-    character: player
+    character: player,
+    isSignedIn: loggedIn
   }
 
   useEffect(() => {
@@ -59,6 +64,7 @@ function App() {
       } else {
           // doc.data() will be undefined in this case
           console.log("New user!");
+          setNewUser(true)
           db.collection("users").doc(userEmail).set({
               name: userName,
               email: userEmail,
@@ -86,13 +92,33 @@ function App() {
                 setUserName(user.displayName)
                 setUserEmail(user.email)
                 setLoggedIn(true)
-                return <div>hello {user.displayName}</div>
+                setContinueWOSignIn(false)
+
+                return ( 
+                  <div className='greeting'>
+                    <img src={Greeting} />
+                    <h2> { newUser ? 'Hello' : 'Welcome back' } {user.displayName}!</h2>
+                  </div>)
               }
               if (!isSignedIn) {
                 setLoggedIn(false)
                 setUserName('')
                 setUserEmail('')
-                return <p>Please sign in to start playing</p>
+                setNewUser(false)
+
+                return (
+                  <>
+                    { 
+                      !continueWOSignIn && <>
+                        <h3>Please sign in to start playing</h3>
+                        <br /> or <br />
+                        <button onClick={() =>{ setContinueWOSignIn(true) }}> 
+                          Continue without signing in
+                        </button>
+                      </>
+                    }
+                  </>
+                )
               }
 
             }}
@@ -102,7 +128,8 @@ function App() {
                 return <Game user={userEmail} userProps={userProps} />
               }}
           </IfFirebaseAuthed>
-          
+
+          { continueWOSignIn && <Game userProps={userProps} />}
         </div>
       </FirestoreProvider>
     </FirebaseAuthProvider>
