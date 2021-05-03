@@ -62,6 +62,7 @@ const Game = ({user, userProps, fruits }) => {
 
         setPlayerX(17)
         setPlayerY(2)
+        setPlayerOrientation('scaleX(1)')
     }
 
     

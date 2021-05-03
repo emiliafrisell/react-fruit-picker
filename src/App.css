@@ -28,7 +28,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* justify-content: space-around; */
 }
 
 .greeting img {
@@ -37,6 +36,21 @@ main {
 }
 .greeting h2 {
   display: inline;
+}
+
+@media screen and (max-width: 800px) {
+  main {
+    flex-direction: column;
+  }
+
+  .greeting img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .greeting h2 {
+    font-size: 1.3rem;
+  }
 }
 .App-logo {
   height: 40vmin;

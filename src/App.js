@@ -32,7 +32,8 @@ function App() {
   const openmoji = require('openmoji')
   const om = openmoji.openmojis[0]
 
-  import(`./components${om.openmoji_images.color.svg}`).then((module) => {
+  // ${om.openmoji_images.color.svg}`
+  import('./components/color/svg/1F3C3.svg').then((module) => {
     setPlayer(module.default);
   });
 
@@ -109,13 +110,29 @@ function App() {
                 return (
                   <>
                     { 
-                      !continueWOSignIn && <>
-                        <h3>Please sign in to start playing</h3>
+                      !continueWOSignIn && 
+                      <div style={{marginTop: '20%'}}>
+                        <h3>Please 
+                          <span style={{ 
+                              paddingLeft: '5px', 
+                              paddingRight: '5px', 
+                              textDecoration: 'underline',
+                              cursor: 'pointer'
+                            }}
+
+                            onClick={() => {
+                              const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                              firebase.auth().signInWithPopup(googleAuthProvider);
+                          }}>
+                            Sign In
+                          </span> 
+                          to start playing</h3>
                         <br /> or <br />
-                        <button onClick={() =>{ setContinueWOSignIn(true) }}> 
-                          Continue without signing in
+                        <button className='try_again' style={{marginTop: '50px'}}
+                          onClick={() =>{ setContinueWOSignIn(true) }}> 
+                            Continue without signing in
                         </button>
-                      </>
+                      </div>
                     }
                   </>
                 )

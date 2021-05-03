@@ -69,17 +69,28 @@ const ActiveGame = ({ props }) => {
     }
 
     const movePlayer = () => {
+        console.log(up, down, left, right)
+        // setTimeout(() => {
         if (up && props.playerY > 1) { 
             props.setPlayerY(props.playerY - 1) 
+            // movePlayer()
         } else if (right && props.playerX < 20) { 
             props.setPlayerX(props.playerX + 1)
             props.setPlayerOrientation('scaleX(-1)')
+            // movePlayer()
+
         } else if (down && props.playerY < 20) { 
             props.setPlayerY(props.playerY + 1)
+            // movePlayer()
+
         } else if (left && props.playerX > 1) { 
             props.setPlayerX(props.playerX - 1); 
             props.setPlayerOrientation('scaleX(1)')
+            // movePlayer()
+
         }
+    // }, 50)
+
     }
 
     const checkLocationOfPlayer = (x, y) => {

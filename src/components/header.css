@@ -15,7 +15,7 @@ header {
 }
 
 h1 {
-  /* padding-left: 2rem; */
+  padding-left: 1rem;
   margin: 0;
   font-size: 3rem;
 }
@@ -32,4 +32,16 @@ h1 {
   margin: 20px;
   margin-right: 5%;
   /* align-self: end; */
+}
+
+@media screen and (max-width: 800px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .sign-in-button {
+    height: 30px;
+    width: 100px;
+    font-size: 1rem;
+  }
 }

@@ -5,6 +5,8 @@ import 'firebase/firestore';
 
 import './score.css';
 
+import Party from './color/svg/1F389.svg'
+
 
 const Score = ({ score, isGameOver, userProps }) => {
 
@@ -56,33 +58,54 @@ const Score = ({ score, isGameOver, userProps }) => {
   return (
     <apart>
         <section className="scores">
-                <p id="score">Score: {score}</p>
-                <div style={{textAlign: 'right'}}>
+                <p id="score">
+                    <span style={{fontWeight: 'bold'}}>Score: </span> {score}
+                </p>
+                <div className='high-scores'>
                     {
                         userProps.isSignedIn && 
-                        <p id="highScore">Personal High score: {userProps.personalHighScore}</p>
+                        <p id="highScore"><span style={{fontWeight: 'bold'}}>Personal High score: </span>{userProps.personalHighScore}</p>
                     }
-                    <p id="highScore">Game High score: {first.score}</p>
+                    <p id="highScore"><span style={{fontWeight: 'bold'}}>Game High score: </span>{first.score}</p>
                 </div>
         </section>
         <section className="scores">
+
             { 
                 userProps.isSignedIn && 
-                <div> Personal top 3
+
+                <div className='personal-score score-box'> 
+
+                    <h4>Your top 3 <img src={Party} style={{marginBottom: '-3px'}}/></h4>
+
                     <ol>
                         {
                         userProps.userScores.sort((a, b) => (a < b) ? 1 : -1).slice(0, 3).map(score => {
-                            return <li>{score}</li>
+                            return (
+                                <li>
+                                    <span className='game-span'>{score}</span>
+                                </li>
+                                )
                         })
                         }
                     </ol>
                 </div>
             }
-            <div> Game top 3
+
+            <div className='game-score score-box'> 
+
+                <h4>Game High Score</h4>
+
                 <ol style={{textAlign: 'left'}}>
-                    <li key='1'>{first.name}:  <span style={{float: 'right'}}> {first.score}</span></li>
-                    <li key='2'>{second.name}:  <span style={{float: 'right'}}> {second.score}</span></li>
-                    <li key='3'>{third.name}:  <span style={{float: 'right'}}> {third.score}</span></li>
+                    <li key='1'>
+                        {first.name}:  <span className='game-span'> {first.score}</span>
+                    </li>
+                    <li key='2'>
+                        {second.name}:  <span className='game-span'> {second.score}</span>
+                    </li>
+                    <li key='3'>
+                        {third.name}:  <span className='game-span'> {third.score}</span>
+                    </li>
                 </ol>
             </div>
         </section>

@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 
 // Hook
 function useKeyPress(targetKey) {
+
   // State for keeping track of whether key is pressed
   const [keyPressed, setKeyPressed] = useState(false);
   // If pressed key is our target key then set to true
   function downHandler(key) {
-    console.log(key)
     if (key.key === targetKey ) {
+      console.log(key.key)
       key.preventDefault()
       setKeyPressed(true);
     }
