@@ -8,7 +8,6 @@ function useKeyPress(targetKey) {
   // If pressed key is our target key then set to true
   function downHandler(key) {
     if (key.key === targetKey ) {
-      console.log(key.key)
       key.preventDefault()
       setKeyPressed(true);
     }

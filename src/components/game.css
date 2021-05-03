@@ -22,6 +22,8 @@
 
   margin: auto;
   margin-top: 1rem;
+
+  background-color: white;
 }
 
 @media screen and (min-width: 800px) {
@@ -50,7 +52,7 @@
 
   font-size: 1.4rem;
 
-  background-color: var(--android-green);
+  background-color: rgb(210, 230, 115);
   border: 1px solid var(--middle-green-yellow);
 
   box-shadow: 2px 2px 2px 2px var(--middle-green-yellow);

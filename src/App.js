@@ -111,7 +111,7 @@ function App() {
                   <>
                     { 
                       !continueWOSignIn && 
-                      <div style={{marginTop: '20%'}}>
+                      <div style={{marginTop: '15%'}}>
                         <h3>Please 
                           <span style={{ 
                               paddingLeft: '5px', 
