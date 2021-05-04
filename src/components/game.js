@@ -84,8 +84,8 @@ const Game = ({user, userProps, fruits }) => {
         </section>
 
         {/* <section className='controls'>
-          <button >up</button>
-          <button >right</button>
+          <button onTouchStartCapture={() => console.log('up')} onTouchEndCapture={() => console.log('letgo')}>up</button>
+          <button  onClick={() => console.log('right')}>right</button>
 
           <button >down</button>
           <button >left</button>
