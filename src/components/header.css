@@ -45,3 +45,16 @@ h1 {
     font-size: 1rem;
   }
 }
+
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+  .sign-in-button {
+    height: 25px;
+    width: 80px;
+    font-size: 1rem;
+    margin: 10px;
+    margin-right: 4%;
+  }
+}

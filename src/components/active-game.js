@@ -31,14 +31,15 @@ const ActiveGame = ({ props }) => {
     const right = useKeyPress("ArrowRight");
     const down = useKeyPress("ArrowDown");
     const left = useKeyPress("ArrowLeft");
-    
+
     // const fruitArray = [Apple, Pineapple, Grapes, Orange, Pear];
+
 
     const placeFruit = (fruit) => {
         let randomX, randomY;
         if (window.innerWidth > 500) {
             randomX = Math.floor(Math.random() * 20) + 1
-        } else {
+        } else if (window.innerWidth <= 500){
             randomX = Math.floor(Math.random() * 14) + 1
         }
         randomY = Math.floor(Math.random() * 20) + 1
@@ -70,17 +71,21 @@ const ActiveGame = ({ props }) => {
     }
         
     setTimeout(() => {
-        if (up && props.playerY > 1) { 
+        if ((up && props.playerY > 1) || (props.touchUp && props.playerY > 1)) { 
             props.setPlayerY(props.playerY - 1) 
 
-        } else if (right && props.playerX < 20) { 
-            props.setPlayerX(props.playerX + 1)
+        } else if (right || props.touchRight) {
+            if (window.innerWidth > 500 && props.playerX < 20) {
+                props.setPlayerX(props.playerX + 1)
+            } else if (window.innerWidth <= 500 && props.playerX < 14) {
+                props.setPlayerX(props.playerX + 1)
+            }
             props.setPlayerOrientation('scaleX(-1)')
-            
-        } else if (down && props.playerY < 20) { 
+
+        } else if ((down && props.playerY < 20) || (props.touchDown && props.playerY < 20)) { 
             props.setPlayerY(props.playerY + 1)
             
-        } else if (left && props.playerX > 1) { 
+        } else if ((left && props.playerX > 1) || (props.touchLeft && props.playerX > 1)) { 
             props.setPlayerX(props.playerX - 1); 
             props.setPlayerOrientation('scaleX(1)')
         }
@@ -129,11 +134,29 @@ const ActiveGame = ({ props }) => {
     useEffect(() => {
 
         props.setPrevPlayerPosition({x: props.playerX, y: props.playerY})
-
-        // movePlayer()
         
         checkLocationOfPlayer(props.playerX, props.playerY)
-        
+
+        if (window.innerWidth <= 500){
+            if (props.playerX >= 14 || props.playerX <= 1) {
+                console.log('end reached')
+                props.setTouchLeft(false)
+                props.setTouchRight(false)
+            }
+        }
+        if (window.innerWidth > 500){
+            if (props.playerX >= 20 || props.playerX <= 1) {
+                console.log('end reached')
+                props.setTouchLeft(false)
+                props.setTouchRight(false)
+            }
+        }
+        if (props.playerY >= 20 || props.playerY <= 1) {
+            console.log('end reached')
+            props.setTouchUp(false)
+            props.setTouchDown(false)
+        }
+
     }, [props.playerX, props.playerY])
     
   return (

@@ -7,7 +7,7 @@ import ActiveGame from './active-game'
 import GameOver from './game-over'
 import Score from './score'
 
-const Game = ({user, userProps, fruits }) => {
+const Game = ({ user, userProps, fruits }) => {
 
     const [isActiveGame, setIsActiveGame] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
@@ -21,6 +21,11 @@ const Game = ({user, userProps, fruits }) => {
     const [ playerY, setPlayerY ] = useState(2)
     const [ playerOrientation, setPlayerOrientation ] = useState('scaleX(1)')
     const [ prevPlayerPosition, setPrevPlayerPosition ] = useState({x: playerX, y: playerY})
+
+    const [ up, setUp ] = useState(false)
+    const [ right, setRight ] = useState(false)
+    const [ down, setDown ] = useState(false)
+    const [ left, setLeft ] = useState(false)
 
     const playerStyle = {
         transform: playerOrientation,
@@ -49,6 +54,15 @@ const Game = ({user, userProps, fruits }) => {
         user: user,
         userProps: userProps,
         fruits: fruits,
+        
+        touchUp: up,
+        touchRight: right,
+        touchDown: down,
+        touchLeft: left,
+        setTouchUp: setUp,
+        setTouchRight: setRight,
+        setTouchDown: setDown,
+        setTouchLeft: setLeft
     }
 
     const handleStartGame = () => {
@@ -65,7 +79,6 @@ const Game = ({user, userProps, fruits }) => {
         setPlayerOrientation('scaleX(1)')
     }
 
-    
   return (
     <>
       <main>
@@ -83,14 +96,37 @@ const Game = ({user, userProps, fruits }) => {
 
         </section>
 
-        {/* <section className='controls'>
-          <button onTouchStartCapture={() => console.log('up')} onTouchEndCapture={() => console.log('letgo')}>up</button>
-          <button  onClick={() => console.log('right')}>right</button>
+        <section className='controls'>
 
-          <button >down</button>
-          <button >left</button>
+          <button id='up'
+            onTouchStartCapture={() => setUp(true)} 
+            onTouchEndCapture={() => setUp(false)}
+            > 
+              <i className="fa fa-angle-up" aria-hidden="true"></i>
+          </button>
 
-        </section> */}
+          <button id='right'
+            onTouchStartCapture={() => setRight(true)} 
+            onTouchEndCapture={() => setRight(false)}
+          >
+            <i className="fa fa-angle-right" aria-hidden="true"></i>
+          </button>
+
+          <button id='down'
+            onTouchStartCapture={() => setDown(true)} 
+            onTouchEndCapture={() => setDown(false)}
+          >
+            <i className="fa fa-angle-down" aria-hidden="true"></i>
+          </button>
+
+          <button id='left'
+            onTouchStartCapture={() => setLeft(true)} 
+            onTouchEndCapture={() => setLeft(false)}
+          >
+              <i className="fa fa-angle-left" aria-hidden="true"></i>
+          </button>
+
+        </section>
         <Score score={score} highScore={highScore} userProps={userProps} isGameOver={isGameOver} />
       </main>
     </>

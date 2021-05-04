@@ -73,6 +73,62 @@
   box-shadow: 2px 2px 2px 2px var(--maximum-yellow-red);
 }
 
+.controls {
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.controls button {
+  padding: 10px;
+  width: 50px;
+  height: 40px;
+  border: 1px solid var(--shimmering-blush);
+  background-color: var(--nadeshiko-pink);
+  box-shadow: 2px 2px 2px 2px var(--shimmering-blush);
+  outline: none;
+  border-radius: 7px;
+}
+.controls button i {
+  font-size: 1.3rem;
+  color: var(--davys-grey);
+}
+#up,
+#down {
+  width: 60px;
+  height: 40px;
+}
+
+#left,
+#right {
+  width: 40px;
+  height: 60px;
+}
+
+#up {
+  position: relative;
+  top: 0px;
+  left: 65px;
+}
+
+#down {
+  position: relative;
+  top: 60px;
+  left: -35px;
+}
+
+#left {
+  position: relative;
+  top: 30px;
+  left: -155px;
+}
+
+#right {
+  position: relative;
+  top: 30px;
+  left: 85px;
+}
 @media screen and (max-width: 800px) {
   .try_again {
     grid-column-start: 5;
@@ -103,9 +159,9 @@ img {
   width: 24px;
 }
 @media screen and (min-width: 500px) {
-  /* .controls {
+  .controls {
     display: none;
-  } */
+  }
 }
 @media screen and (max-width: 500px) {
   .playArea {
@@ -117,6 +173,20 @@ img {
     grid-column-start: 7;
   }
   #instructions {
+    grid-column-start: 3;
+    grid-column-end: 13;
+  }
+
+  #game_over {
+    grid-column-start: 1;
+    grid-column-end: 16;
+  }
+
+  #poopGIF {
+    grid-column-start: 2;
+    grid-column-end: 14;
+  }
+  .try_again {
     grid-column-start: 3;
     grid-column-end: 13;
   }
