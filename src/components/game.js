@@ -83,6 +83,14 @@ const Game = ({user, userProps, fruits }) => {
 
         </section>
 
+        {/* <section className='controls'>
+          <button >up</button>
+          <button >right</button>
+
+          <button >down</button>
+          <button >left</button>
+
+        </section> */}
         <Score score={score} highScore={highScore} userProps={userProps} isGameOver={isGameOver} />
       </main>
     </>

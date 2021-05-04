@@ -67,6 +67,27 @@ apart {
   padding-left: 5px;
 }
 
+@media screen and (max-width: 500px) {
+  .scores {
+    min-width: 200px;
+
+    justify-content: center;
+
+    flex-direction: column;
+  }
+
+  .high-scores,
+  #score {
+    width: 100vw;
+    padding-left: 1rem;
+    text-align: left;
+  }
+
+  .score-box {
+    margin: auto;
+  }
+}
+
 @media screen and (min-width: 800px) {
   .scores {
     min-width: 200px;

@@ -31,12 +31,17 @@ const ActiveGame = ({ props }) => {
     const right = useKeyPress("ArrowRight");
     const down = useKeyPress("ArrowDown");
     const left = useKeyPress("ArrowLeft");
-
+    
     // const fruitArray = [Apple, Pineapple, Grapes, Orange, Pear];
 
     const placeFruit = (fruit) => {
-        let randomX = Math.floor(Math.random() * 20) + 1
-        let randomY = Math.floor(Math.random() * 20) + 1
+        let randomX, randomY;
+        if (window.innerWidth > 500) {
+            randomX = Math.floor(Math.random() * 20) + 1
+        } else {
+            randomX = Math.floor(Math.random() * 14) + 1
+        }
+        randomY = Math.floor(Math.random() * 20) + 1
 
         let sameAsFruit = Fruits.some(location => location.x === randomX && location.y === randomY)
         let sameAsPlayer = (props.playerX === randomX && props.playerY === randomY)
@@ -63,30 +68,24 @@ const ActiveGame = ({ props }) => {
 
         setId(id + 1)
     }
-    
-    // console.log(up, down, left, right)
-
-    // console.log(up === true)
-    // const movePlayer = () => {
         
-        setTimeout(() => {
-            if (up && props.playerY > 1) { 
-                props.setPlayerY(props.playerY - 1) 
+    setTimeout(() => {
+        if (up && props.playerY > 1) { 
+            props.setPlayerY(props.playerY - 1) 
 
-            } else if (right && props.playerX < 20) { 
-                props.setPlayerX(props.playerX + 1)
-                props.setPlayerOrientation('scaleX(-1)')
-                
-            } else if (down && props.playerY < 20) { 
-                props.setPlayerY(props.playerY + 1)
-                
-            } else if (left && props.playerX > 1) { 
-                props.setPlayerX(props.playerX - 1); 
-                props.setPlayerOrientation('scaleX(1)')
-            }
+        } else if (right && props.playerX < 20) { 
+            props.setPlayerX(props.playerX + 1)
+            props.setPlayerOrientation('scaleX(-1)')
             
-        }, 200)
-    // }
+        } else if (down && props.playerY < 20) { 
+            props.setPlayerY(props.playerY + 1)
+            
+        } else if (left && props.playerX > 1) { 
+            props.setPlayerX(props.playerX - 1); 
+            props.setPlayerOrientation('scaleX(1)')
+        }
+        
+    }, 200)
 
     const checkLocationOfPlayer = (x, y) => {
 

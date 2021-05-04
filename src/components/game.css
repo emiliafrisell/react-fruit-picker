@@ -79,6 +79,7 @@
     font-size: 1.1rem;
   }
 }
+
 iframe {
   border: none;
 }
@@ -100,4 +101,23 @@ iframe {
 img {
   height: 24px;
   width: 24px;
+}
+@media screen and (min-width: 500px) {
+  /* .controls {
+    display: none;
+  } */
+}
+@media screen and (max-width: 500px) {
+  .playArea {
+    width: 350px;
+    grid-template-columns: repeat(14, 1fr);
+  }
+
+  #start_game {
+    grid-column-start: 7;
+  }
+  #instructions {
+    grid-column-start: 3;
+    grid-column-end: 13;
+  }
 }
