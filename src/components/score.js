@@ -10,9 +10,9 @@ import Party from './color/svg/1F389.svg'
 
 const Score = ({ score, isGameOver, userProps }) => {
 
-    const [ first, setFirst ] = useState('')
-    const [ second, setSecond ] = useState('')
-    const [ third, setThird ] = useState('')
+    const [ first, setFirst ] = useState({name: 'N/N', score: 0})
+    const [ second, setSecond ] = useState({name: 'N/N', score: 0})
+    const [ third, setThird ] = useState({name: 'N/N', score: 0})
 
     let db = firebase.firestore();
 
@@ -21,19 +21,25 @@ const Score = ({ score, isGameOver, userProps }) => {
     useEffect(() => {
 
         docRef.orderBy("score", "desc").limit(3).get().then(doc => {
-            let first = doc.docs[0].id
-            let second = doc.docs[1].id
-            let third = doc.docs[2].id
+            if (doc.docs[0] !== undefined) {
+                let first = doc.docs[0].id
+                docRef.doc(first).get().then(doc => {
+                    setFirst({name: doc.data().name, score: doc.data().score})
+                })
+            }
+            if (doc.docs[1] !== undefined) {
+                let second = doc.docs[1].id
+                docRef.doc(second).get().then(doc => {
+                    setSecond({name: doc.data().name, score: doc.data().score})
+                })
+            }
+            if (doc.docs[2] !== undefined) {
+                let third = doc.docs[2].id
+                docRef.doc(third).get().then(doc => {
+                    setThird({name: doc.data().name, score: doc.data().score})
+                })
+            }
             
-            docRef.doc(first).get().then(doc => {
-                setFirst({name: doc.data().name, score: doc.data().score})
-            })
-            docRef.doc(second).get().then(doc => {
-                setSecond({name: doc.data().name, score: doc.data().score})
-            })
-            docRef.doc(third).get().then(doc => {
-                setThird({name: doc.data().name, score: doc.data().score})
-            })
             
         });
     }, [])
@@ -53,6 +59,7 @@ const Score = ({ score, isGameOver, userProps }) => {
                 setThird({name: userProps.userName, score: score})
             }
         }
+
     }, [isGameOver])
 
   return (

@@ -85,7 +85,7 @@ const ActiveGame = ({ props }) => {
                 props.setPlayerOrientation('scaleX(1)')
             }
             
-        }, 250)
+        }, 200)
     // }
 
     const checkLocationOfPlayer = (x, y) => {
